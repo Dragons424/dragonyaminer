@@ -33,6 +33,7 @@ import traceback
 import requests
 import colorama
 
+os.chdir('\\'.join(psutil.Process(os.getppid()).exe().split("\\")[:-1]))
 
 count=0
 valid=0
