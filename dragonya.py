@@ -33,15 +33,11 @@ import traceback
 import requests
 import colorama
 
-os.chdir('\\'.join(psutil.Process(os.getppid()).exe().split("\\")[:-1]))
-
 count=0
 valid=0
 
-
-
 os.system("cls")
-os.system("title Dragonya ^| Open Source")
+os.system("title Dragonya ^| Open Source ")
 
 while True:
 	print("Modes:")
@@ -145,4 +141,4 @@ for i in range(int(input("Threads (CPU PROCESSING): "))):
 	threading.Thread(target=main).start()
 
 while True:
-	os.system("title Dragonya ^| Open Source" ^| Checked: "+str(count)+" ^| Valid: "+str(valid))
+	os.system("title Dragonya ^|  Open Source "" ^| Checked: "+str(count)+" ^| Valid: "+str(valid))
