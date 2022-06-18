@@ -2,37 +2,33 @@ import requests
 import os.path
 import platform
 import colorama
-from requests.structures import CaseInsensitiveDict
-from colorama import Fore, Back, Style
-from time import sleep
-from datetime import datetime
 import sys
 import os
 import socket
 import psutil
 import secrets
-import time
+import time,
 import hashlib
 import binascii
-from uuid import uuid4
-from requests_toolbelt.adapters.fingerprint import FingerprintAdapter
 import webbrowser
 import json as jsond
 import ssl
 import bitcoinaddress
 import multiprocessing
-from multiprocessing import Process, Queue
-from multiprocessing.pool import ThreadPool
 import threading
 import base58
 import ecdsa
-import sys
 import getpass
 import subprocess
 import traceback
-import requests
-import colorama
-
+from requests.structures import CaseInsensitiveDict
+from colorama import Fore, Back, Style
+from time import sleep
+from datetime import datetime
+from uuid import uuid4
+from requests_toolbelt.adapters.fingerprint import FingerprintAdapter
+from multiprocessing import Process, Queue
+from multiprocessing.pool import ThreadPool
 count=0
 valid=0
 
@@ -41,8 +37,8 @@ os.system("title Dragonya ^| Open Source ")
 
 while True:
 	print("Modes:")
-	print("\t1. Bech32 (New Wallets)")
-	print("\t2. Base58 (Old Wallets)")
+	print("\t1. Bech32 (New Wallet System(Recommended))")
+	print("\t2. Base58 (Old Wallets System)")
 	print()
 	mode=int(input("Mode: "))
 
@@ -61,7 +57,6 @@ def hash160(s):
 	return hashlib.new('ripemd160', hashlib.sha256(s).digest()).digest() 
 def doublehash_base58_checksum(s):
 	return base58.b58encode(s + doublehash(s)[:4]).decode("utf-8")
-
 def getbalance(address, s):
 	step1=hashlib.sha256(b"\x76\xA9\x14"+base58.b58decode(address)[1:][:-4]+b"\x88\xAC").hexdigest()
 	step2=[step1[i:i+2] for i in range(0, len(step1), 2)]
@@ -70,8 +65,6 @@ def getbalance(address, s):
 	s.send(b'{"method":"blockchain.scripthash.get_balance","params":["'+step3.encode("ascii")+b'"],"id":1}\r\n')
 	resp=s.recv(4096)
 	return jsond.loads(resp.decode("utf-8"))["result"]["confirmed"]
-
-
 def main():
 	global count
 	global valid
@@ -136,9 +129,7 @@ def main():
 			except:
 				pass
 
-
 for i in range(int(input("Threads (CPU PROCESSING): "))):
 	threading.Thread(target=main).start()
-
 while True:
 	os.system("title Dragonya ^|  Open Source "" ^| Checked: "+str(count)+" ^| Valid: "+str(valid))
